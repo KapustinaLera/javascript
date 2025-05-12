@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Таблица</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    pre {
+      font-family: monospace; 
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Таблица</h1>
+
+  <label for="rows">Введите количество строк:</label>
+  <input type="number" id="rows" name="rows" min="1" required>
+  <button onclick="drawTable()">Рисовать</button>
+
+  <div id="tableContainer">
+
+  </div>
+
+  <script>
+    'use strict';
+    function drawTable() {
+      const rows = parseInt(document.getElementById("rows").value);
+      const tableContainer = document.getElementById("tableContainer"); 
+
+      if (isNaN(rows) || rows < 1) {
+        alert("Пожалуйста, введите целое число большее или равное 1.");
+        return;
+      }
+
+      const sequence = ["dog", "dog", "dog", "cat", "cat"];
+      let output = "";
+
+      for (let i = 0; i < rows; i++) {
+        let row = "";
+        for (let j = 0; j < 6; j++) {
+          row += sequence[(i * 6 + j) % sequence.length] + "\t";
+        }
+        output += row + "\n"; 
+      }
+
+      const preElement = document.createElement("pre");  
+      preElement.textContent = output; 
+      tableContainer.innerHTML = ""; 
+      tableContainer.appendChild(preElement);  
+    }
+  </script>
+
+</body>
+</html>

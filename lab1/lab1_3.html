@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ввод числа</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ввод числа</h1>
+
+  <a href="../index.html" id="numberLink">Получить число</a>
+
+  <script>
+     'use strict';
+    const numberLink = document.getElementById("numberLink");
+
+    function checkNumber() {
+      let num;
+      while (true) {
+        num = prompt("Введите число, большее 100:", "");
+
+        if (num === null) {  
+          return false;
+        }
+
+        num = Number(num); 
+
+        if (isNaN(num)) {
+          alert("Пожалуйста, введите число.");
+          continue;
+        }
+
+        if (num > 100) {
+          return true;
+        }
+      }
+    }
+
+    numberLink.addEventListener("click", function(event) {
+      if (!checkNumber()) {
+        event.preventDefault(); 
+        const confirmResult = confirm("Перейти на главную страницу?");
+        if (confirmResult) {
+          window.location.href = "../index.html";  
+        }
+      }
+      
+    });
+  </script>
+
+</body>
+</html>

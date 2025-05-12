@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Считать ворон</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Считать ворон</h1>
+
+  <form id="crowForm">
+    <label for="num">Введите количество ворон:</label>
+    <input type="number" id="num" name="num" min="0" required>
+    <button type="button" onclick="countCrows()">Считать</button>
+  </form>
+
+  <script>
+     'use strict';
+    function countCrows() {
+      const num = parseInt(document.getElementById("num").value);
+
+      if (isNaN(num)) {
+        alert("Пожалуйста, введите целое число.");
+        return;
+      }
+
+      let ending = "";
+
+      if (num % 10 === 1 && num % 100 !== 11) {
+        ending = "ворона";
+      } else if (num % 10 >= 2 && num % 10 <= 4 && (num % 100 < 10 || num % 100 >= 20)) {
+        ending = "вороны";
+      } else {
+        ending = "ворон";
+      }
+
+      alert(`На ветке сидит ${num} ${ending}`);
+    }
+  </script>
+
+</body>
+</html>
