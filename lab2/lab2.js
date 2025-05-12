@@ -1,11 +1,8 @@
-// mocha.setup('bdd');
-// // Make assert global so that it is available to all test functions.
-// window.assert = chai.assert;
+
 /**
- * Calculates the power of x raised to n.
- * @param {number} x The base number.
- * @param {number} n The exponent (must be an integer).
- * @returns {number} x raised to the power of n.
+ * @param {number} x 
+ * @param {number} n 
+ * @returns {number} 
  */
 function pow(x, n) {
     if (n === 0) {
@@ -18,9 +15,8 @@ function pow(x, n) {
   }
   
   /**
-   * Calculates the sum of numbers from 1 to n (inclusive).
-   * @param {number} n A natural number.
-   * @returns {number} The sum of numbers from 1 to n.
+   * @param {number} n 
+   * @returns {number} 
    */
   function sumTo(n) {
     let sum = 0;
@@ -31,18 +27,16 @@ function pow(x, n) {
   }
   
   /**
-   * Checks if a year is a leap year.
-   * @param {number} year The year to check.
-   * @returns {boolean} True if the year is a leap year, false otherwise.
+   * @param {number} year 
+   * @returns {boolean} 
    */
   function isLeapYear(year) {
     return (year % 400 === 0) || (year % 4 === 0 && year % 100 !== 0);
   }
   
   /**
-   * Calculates the factorial of a number n using recursion.
-   * @param {number} n A non-negative integer.
-   * @returns {BigInt} The factorial of n.
+   * @param {number} n 
+   * @returns {BigInt} 
    */
   function factorial(n) {
     if (n === 0) {
@@ -53,9 +47,8 @@ function pow(x, n) {
   }
   
   /**
-   * Calculates the n-th Fibonacci number.
-   * @param {number} n A non-negative integer.
-   * @returns {BigInt} The n-th Fibonacci number.
+   * @param {number} n 
+   * @returns {BigInt} 
    */
   function fib(n) {
     let a = 0n, b = 1n;
@@ -68,9 +61,8 @@ function pow(x, n) {
   }
   
   /**
-   * Creates a comparison function that compares its argument to a given value x.
-   * @param {number} x The value to compare against.
-   * @returns {function(number): (boolean | null)} A function that compares its argument to x.
+   * @param {number} x 
+   * @returns {function(number): (boolean | null)} 
    */
   function compare(x) {
     return function(y) {
@@ -85,9 +77,8 @@ function pow(x, n) {
   }
   
   /**
-   * Calculates the sum of all its arguments.
-   * @param {...number} numbers The numbers to sum.
-   * @returns {number} The sum of all arguments.
+   * @param {...number} numbers 
+   * @returns {number} 
    */
   function sum(...numbers) {
     let total = 0;
@@ -98,9 +89,8 @@ function pow(x, n) {
   }
   
   /**
-   * Adds a symbolic property "blackSpot" with the value `true` to an object.
-   * @param {object} obj The object to add the property to.
-   * @returns {object} The object with the added "blackSpot" property.
+   * @param {object} obj 
+   * @returns {object} 
    */
   function addBlackSpot(obj) {
     obj[Symbol.for("blackSpot")] = true;

@@ -1,113 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+
 <head>
-  <title>Lab 2 Tests</title>
-  <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестирование lab2.js</title>
+    <!-- добавим стили mocha для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <!-- добавляем сам фреймворк mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+    <script>
+        // включаем режим тестирования в стиле BDD
+        mocha.setup('bdd');
+    </script>
+    <!-- добавим chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+        // chai предоставляет большое количество функций. Объявим assert глобально
+        let assert = chai.assert;
+    </script>
 </head>
+
 <body>
+    <script src="lab2.js"></script>
 
-  <h1>Lab 2 Tests</h1>
+    <!-- скрипт со спецификацией -->
+    <script>
+        'use strict';
 
-  <div id="mocha"></div>
+        describe("pow", function () {
 
-  <script src="https://unpkg.com/mocha/mocha.js"></script>
-  <script src="https://unpkg.com/chai/chai.js"></script>
-  <script>
-    mocha.setup('bdd');
-    const assert = chai.assert;
-  </script>
+            it("pow(2, 2) => 4", function () {
+                assert.strictEqual(pow(2, 2), 4);
+            });
 
-  <!-- Load your JavaScript file -->
-  <script src="lab2/lab2.js"></script>
+            it("pow(2, 0) => 1", function () {
+                assert.strictEqual(pow(2, 0), 1);
+            });
 
-  <!-- Test Cases -->
-  <script>
-    describe('pow', function() {
-      it('should return 4 when pow(2, 2)', function() {
-        assert.equal(pow(2, 2), 4);
-      });
-      it('should return 1 when pow(2, 0)', function() {
-        assert.equal(pow(2, 0), 1);
-      });
-      it('should return 0.25 when pow(2, -2)', function() {
-        assert.equal(pow(2, -2), 0.25);
-      });
-    });
+            it("pow(2, -2) => 0.25", function () {
+                assert.strictEqual(pow(2, -2), 0.25);
+            });
 
-    describe('sumTo', function() {
-      it('should return 5050 when sumTo(100)', function() {
-        assert.equal(sumTo(100), 5050);
-      });
-    });
-
-    describe('isLeapYear', function() {
-      it('should return true for 2024', function() {
-        assert.isTrue(isLeapYear(2024));
-      });
-      it('should return false for 2025', function() {
-        assert.isFalse(isLeapYear(2025));
-      });
-       it('should return true for 2000', function() {
-        assert.isTrue(isLeapYear(2000));
-      });
-        it('should return false for 1900', function() {
-        assert.isFalse(isLeapYear(1900));
-      });
-    });
-
-    describe('factorial', function() {
-      it('should return 1n for factorial(0)', function() {
-        assert.strictEqual(factorial(0), 1n); // Use strictEqual for BigInt comparison
-      });
-      it('should return 120n for factorial(5)', function() {
-        assert.strictEqual(factorial(5), 120n); // Use strictEqual for BigInt comparison
-      });
-    });
-
-    describe('fib', function() {
-      it('should return 0n for fib(0)', function() {
-        assert.strictEqual(fib(0), 0n);
-      });
-      it('should return 354224848179261915075n for fib(100)', function() {
-        assert.strictEqual(fib(100), 354224848179261915075n);
-      });
-    });
-
-    describe('compare', function() {
-      const compare5 = compare(5);
-      it('compare(5)(4) should return false', function() {
-        assert.isFalse(compare5(4));
-      });
-       it('compare(5)(5) should return null', function() {
-        assert.isNull(compare5(5));
-      });
-       it('compare(5)(6) should return true', function() {
-        assert.isTrue(compare5(6));
-      });
-    });
-
-     describe('sum', function() {
-      it('should return 0 for sum()', function() {
-        assert.equal(sum(), 0);
-      });
-      it('should return 1 for sum(1)', function() {
-        assert.equal(sum(1), 1);
-      });
-      it('should return 3 for sum(1, 2)', function() {
-        assert.equal(sum(1, 2), 3);
-      });
-    });
-
-    describe('addBlackSpot', function() {
-        it('should add the blackSpot symbol property with value true', function() {
-            const obj = {};
-            const result = addBlackSpot(obj);
-            assert.strictEqual(result[Symbol.for("blackSpot")], true);  // IMPORTANT: strictEqual
         });
-    });
 
-    mocha.run();
-  </script>
+        describe("sumTo", function () {
 
+            it("sumTo(100) => 5050", function () {
+                assert.strictEqual(sumTo(100), 5050);
+            });
+
+        });
+
+        describe("isLeapYear", function () {
+
+            it("isLeapYear(2024) => true", function () {
+                assert.isTrue(isLeapYear(2024));
+            });
+
+            it("isLeapYear(2025) => false", function () {
+                assert.isFalse(isLeapYear(2025));
+            });
+
+            it("isLeapYear(2000) => true", function () {
+                assert.isTrue(isLeapYear(2000));
+            });
+
+            it("isLeapYear(1900) => false", function () {
+                assert.isFalse(isLeapYear(1900));
+            });
+
+        });
+
+        describe("factorial", function () {
+
+            it("factorial(0) => 1n", function () {
+                assert.strictEqual(factorial(0), 1n);
+            });
+
+            it("factorial(5) => 120n", function () {
+                assert.strictEqual(factorial(5), 120n);
+            });
+
+        });
+
+        describe("fib", function () {
+
+            it("fib(0) => 0n", function () {
+                assert.strictEqual(fib(0), 0n);
+            });
+
+            it("fib(100) => 354224848179261915075n", function () {
+                assert.strictEqual(fib(100), 354224848179261915075n);
+            });
+
+        });
+
+        describe("compare", function () {
+
+            it("compare(5)(4) => false", function () {
+                assert.isFalse(compare(5)(4));
+            });
+
+            it("compare(5)(5) => null", function () {
+                assert.isNull(compare(5)(5));
+            });
+
+            it("compare(5)(6) => true", function () {
+                assert.isTrue(compare(5)(6));
+            });
+
+        });
+
+        describe("sum", function () {
+
+            it("sum() => 0", function () {
+                assert.strictEqual(sum(), 0);
+            });
+
+            it("sum(1) => 1", function () {
+                assert.strictEqual(sum(1), 1);
+            });
+
+            it("sum(1, 2) => 3", function () {
+                assert.strictEqual(sum(1, 2), 3);
+            });
+
+        });
+
+        describe("addBlackSpot", function () {
+
+            it("addBlackSpot({}) => {[Symbol.for('blackSpot')]: true}", function () {
+                assert.deepEqual(addBlackSpot({}), {[Symbol.for('blackSpot')]: true});
+            });
+
+            it("addBlackSpot({obj) === obj", function () {
+                let obj = {};
+                assert.strictEqual(addBlackSpot(obj), obj);
+            });
+
+            it("addBlackSpot(obj) has property Symbol.for('blackSpot')=true}", function () {
+                let blackSpot = Symbol.for("blackSpot");
+                assert.propertyVal(addBlackSpot({}), Symbol.for("blackSpot"), true);
+            });
+
+        });
+
+    </script>
+
+    <!-- элемент с id="mocha" будет содержать результаты тестов -->
+    <div id="mocha"></div>
+
+    <!-- запускаем тесты! -->
+    <script>
+        mocha.run();
+    </script>
 </body>
+
 </html>
