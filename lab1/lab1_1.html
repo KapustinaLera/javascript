@@ -51,10 +51,11 @@
   </form>
 
   <script>
-     'use strict';
+    'use strict';
     function calculatePension() {
       const age = parseInt(document.getElementById("age").value);
-      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const gender = document.querySelector('input[name="gender"]:checked')?.value;  // Use optional chaining
+
       const resultTextarea = document.getElementById("result");
 
       let message = "";

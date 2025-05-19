@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 4</title>
+</head>
+<body>
+    <h1>Lab 4</h1>
+
+    <script>
+
+    class Book {
+        /**
+         * @param {string} title 
+         * @param {number} pubYear 
+         * @param {number} price 
+         */
+        constructor(title, pubYear, price) {
+          this.title = title;
+          this.pubYear = pubYear;
+          this.price = price;
+        }
+
+        show() {
+          return `Название: ${this.title}, Цена: ${this.price}`;
+        }
+
+        /**
+         * @returns {string} 
+         */
+        get title() {
+          return this._title;
+        }
+
+        /**
+         * @param {string} value 
+         * @throws {Error} 
+         */
+        set title(value) {
+          if (typeof value !== 'string' || value.trim() === '') {
+            throw new Error('Заголовок не может быть пустой строкой.');
+          }
+          this._title = value;
+        }
+
+        /**
+         * @returns {number} 
+         */
+        get pubYear() {
+          return this._pubYear;
+        }
+
+        /**
+         * @param {number} value 
+         * @throws {Error}
+         */
+        set pubYear(value) {
+          if (typeof value !== 'number' || value <= 0) {
+            throw new Error('Год публикации должен быть положительным числом.');
+          }
+          this._pubYear = value;
+        }
+
+        /**
+         * @returns {number} 
+         */
+        get price() {
+          return this._price;
+        }
+
+        /**
+         * @param {string} value
+         * @throws {Error} 
+         */
+        set price(value) {
+          if (typeof value !== 'number' || value <= 0) {
+            throw new Error('Цена должна быть положительным числом.');
+          }
+          this._price = value;
+        }
+
+        /**
+         * @param {Book} book1 
+         * @param {Book} book2 
+         * @returns {number} 
+         */
+        static compare(book1, book2) {
+          return book1.pubYear - book2.pubYear;
+        }
+    }
+
+    function isEmpty(obj) {
+        return Object.keys(obj).length === 0 && Object.getOwnPropertySymbols(obj).length === 0;
+    }
+
+    function getSecondsToday() {
+        let now = new Date();
+        let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let diff = now - today; 
+        return Math.round(diff / 1000); 
+    }
+
+    function formatDate(date) {
+        let day = String(date.getDate()).padStart(2, '0');
+        let month = String(date.getMonth() + 1).padStart(2, '0'); 
+        let year = String(date.getFullYear()).slice(-2); 
+        return `${day}.${month}.${year}`;
+    }
+
+
+    
+    let output = ""; 
+
+    const book1 = new Book('Властелин колец', 1954, 2500.99);
+    output += book1.show() + "<br>";
+
+    try {
+        book1.title = ''; 
+    } catch (error) {
+        output += error.message + "<br>";
+    }
+
+    const books = [
+        new Book('Книга C', 2020, 1500.00),
+        new Book('Книга A', 2010, 2000.00),
+        new Book('Книга B', 2015, 2500.00)
+    ];
+
+    books.sort(Book.compare);
+    output += "Книги отсортированы по годам:<br>";
+    books.forEach(book => output += book.show() + "<br>");
+
+    const emptyObj = {};
+    output += `Является ли объект пустым: ${isEmpty(emptyObj)}<br>`;
+
+    const objWithProperty = { key: "value" };
+    output += `В объекте нет свойств: ${isEmpty(objWithProperty)}<br>`;
+
+    output += `Отформатированная дата: ${formatDate(new Date())}<br>`;
+
+    output += `Секунды с начала сегодняшнего дня: ${getSecondsToday()}<br>`;
+
+    let obj = {
+      className: 'open menu'
+    };
+    obj.addClass = function (cls) {
+      const classes = this.className.split(' ');
+      if (!classes.includes(cls)) {
+        classes.push(cls);
+        this.className = classes.join(' ');
+      }
+      return this;
+    };
+    obj.removeClass = function (cls) {
+      const classes = this.className.split(' ');
+      const index = classes.indexOf(cls);
+      if (index !== -1) {
+        classes.splice(index, 1);
+        this.className = classes.join(' ');
+      }
+      return this;
+    };
+    obj.addClass('new');
+    output += `Название класса после добавления 'new': ${obj.className}<br>`;
+    obj.removeClass('open');
+    output += `Имя класса после удаления 'open': ${obj.className}<br>`;
+
+    document.write(output);
+
+    </script>
+
+</body>
+</html>
+
+
