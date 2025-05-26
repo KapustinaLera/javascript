@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Select</title>
+</head>
+<body>
+
+    <select id="mySelect">
+        <option value="Rock">Рок</option>
+        <option value="Blues" selected>Блюз</option>
+    </select>
+
+    <div id="output">
+        <p>Выбранное значение: <span id="selectedValue"></span></p>
+        <p>Выбранный текст: <span id="selectedText"></span></p>
+    </div>
+
+    <script>
+        let select = document.getElementById('mySelect');
+        let selectedValueSpan = document.getElementById('selectedValue');
+        let selectedTextSpan = document.getElementById('selectedText');
+
+        // Функция для обновления вывода
+        function updateOutput() {
+            selectedValueSpan.textContent = select.value;
+            selectedTextSpan.textContent = select.options[select.selectedIndex].text;
+        }
+
+        // Первоначальный вывод значения и текста
+        updateOutput();
+
+        // Добавление опции: <option value="Classic">Классика</option>
+        let newOption = document.createElement('option');
+        newOption.value = "Classic";
+        newOption.text = "Классика";
+        select.add(newOption);
+
+        // Сделать её выбранной
+        select.value = "Classic";
+        updateOutput(); // Обновляем вывод после изменения
+
+        // изменения в select
+        select.addEventListener('change', updateOutput);
+    </script>
+
+</body>
+</html>

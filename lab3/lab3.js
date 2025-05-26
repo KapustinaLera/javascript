@@ -69,21 +69,46 @@ export function getDecimal(num) {
       return str[0].toUpperCase() + str.slice(1);
   }
   
+
+
+
+  import { fib } from './lab2.js'; // Adjust the path if necessary
+
   /**
-   * @param {number} n 
-   * @returns {BigInt[]} 
+   * @param {number} n
+   * @returns {BigInt[]}
    */
-  export function fibs(n) {
+  export function fibs(n) { // Renamed to fibs
     const result = [];
-    let a = 0n, b = 1n;
     for (let i = 0; i < n; i++) {
-      result.push(a);
-      let temp = a;
-      a = b;
-      b = temp + b;
+      result.push(fib(i)); // Use fib(i) from lab2.js
     }
     return result;
   }
+
+  // import { fib } from 'lab2/lab2.js'; 
+  // /**
+  //  * @param {number} n 
+  //  * @returns {BigInt[]} 
+  //  */
+  // export function fib(n) {
+  //   const result = [];
+
+  //   for (let i = 0; i < n; i++) {
+  //     result.push(fib(i)); // Use fib(i) instead of manual calculation
+  //   }
+  //   return result;
+  // }
+
+  //   let a = 0n, b = 1n;
+  //   for (let i = 0; i < n; i++) {
+  //     result.push(a);
+  //     let temp = a;
+  //     a = b;
+  //     b = temp + b;
+  //   }
+  //   return result;
+  // }
   
   /**
 

@@ -45,13 +45,31 @@
 
         });
 
+
+
         describe("sumTo", function () {
 
             it("sumTo(100) => 5050", function () {
-                assert.strictEqual(sumTo(100), 5050);
+                const sumTo = new Function('n', `
+                let sum = 0;
+                for (let i = 1; i <= n; i++) {
+                sum += i;
+            }
+            return sum;
+            `);
+        assert.strictEqual(sumTo(100), 5050);
             });
 
         });
+
+
+        // describe("sumTo", function () {
+
+        //     it("sumTo(100) => 5050", function () {
+        //         assert.strictEqual(sumTo(100), 5050);
+        //     });
+
+        // });
 
         describe("isLeapYear", function () {
 

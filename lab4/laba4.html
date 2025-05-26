@@ -1,0 +1,188 @@
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Задание 1</title>
+</head>
+<body>
+    <p>Проверьте консоль</p>
+    <script>
+        function Book(title, pubYear, price) {
+            this.title = title;
+            this.pubYear = pubYear;
+            this.price = price;
+            
+            this.show = function() {
+                console.log(`Название: ${this.title}, Цена: ${this.price}`);
+            };
+        }
+        
+        const book = new Book("JavaScript", 2020, 1000);
+        book.show();
+    </script>
+
+    <script>
+        function Book(title, pubYear, price) {
+            let _title = title;
+            let _pubYear = pubYear;
+            let _price = price;
+            
+            Object.defineProperties(this, {
+                title: {
+                    get() { return _title; },
+                    set(value) {
+                        if (value.trim() !== "") {
+                            _title = value;
+                        } else {
+                            console.error("Название не может быть пустым");
+                        }
+                    }
+                },
+                pubYear: {
+                    get() { return _pubYear; },
+                    set(value) {
+                        if (value > 0) {
+                            _pubYear = value;
+                        } else {
+                            console.error("Год издания должен быть положительным");
+                        }
+                    }
+                },
+                price: {
+                    get() { return _price; },
+                    set(value) {
+                        if (value > 0) {
+                            _price = value;
+                        } else {
+                            console.error("Цена должна быть положительной");
+                        }
+                    }
+                }
+            });
+        }
+        
+        const book2 = new Book("JavaScript", 2020, 1000);
+        console.log(book2.title, book2.pubYear, book2.price);
+        
+        book2.title = "New Title";
+        book2.pubYear = 2021;
+        book2.price = 1200;
+        
+        // console.log(book2.title, book2.pubYear, book2.price);
+        
+        // book2.title = ""; // Ошибка
+        // book2.pubYear = -1; // Ошибка
+        // book2.price = -100; // Ошибка
+    </script>
+
+    <script>
+        function Book(title, pubYear, price) {
+            this.title = title;
+            this.pubYear = pubYear;
+            this.price = price;
+        }
+        
+        Book.compare = function(a, b) {
+            return a.pubYear - b.pubYear;
+        };
+        
+        const books = [
+            new Book("Book A", 2010, 500),
+            new Book("Book B", 2005, 300),
+            new Book("Book C", 2020, 1000)
+        ];
+        
+        books.sort(Book.compare);
+        console.log(books);
+    </script>
+
+    <script>
+        function isEmpty(obj) {
+            for (let key in obj) {
+                if (obj.hasOwnProperty(key)) return false;
+            }
+            return Object.getOwnPropertySymbols(obj).length === 0;
+        }
+        
+        const obj = { [Symbol()]: true };
+        console.log(isEmpty(obj)); // false
+        
+        const emptyObj = {};
+        console.log(isEmpty(emptyObj)); // true
+    </script>
+
+    <script>
+        let obj = {
+            className: 'open menu'
+        };
+
+        addClass(cls) {
+                const classes = this.className.split(' ');
+                if (!classes.includes(cls)) {
+                    classes.push(cls);
+                    this.className = classes.join(' ').trim();
+                }
+                return this;
+            },
+            
+            removeClass(cls) {
+                const classes = this.className.split(' ');
+                const index = classes.indexOf(cls);
+                if (index !== -1) {
+                    classes.splice(index, 1);
+                    this.className = classes.join(' ').trim();
+                }
+                return this;
+        };
+
+        obj.addClass('new').addClass('open').removeClass('menu');  // Пример использования цепочки
+        console.log(obj.className); // Вывод: "open new"
+    </script>
+
+    <script>
+        let obj = {
+            className: 'open menu',
+            age: 30,
+            details: {
+                name: 'John',
+                city: 'New York'
+            }
+        };
+
+        const jsonString = JSON.stringify(obj, null, 2);
+        console.log("JSON:\n", jsonString);
+
+        const obj2 = JSON.parse(jsonString);
+        console.log("obj2:", obj2);
+
+        console.log(JSON.stringify(obj) === JSON.stringify(obj2)); // true
+
+    </script>
+
+    <script>
+        function getSecondsToday() {
+            let now = new Date();
+            let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            let diff = now - today;
+            return Math.round(diff / 1000);
+        }
+
+        console.log("Секунд с начала дня:", getSecondsToday());
+    </script>
+
+    <script>
+        function formatDate(date) {
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear().toString().slice(-2);
+
+            day = day < 10 ? '0' + day : day;
+            month = month < 10 ? '0' + month : month;
+
+            return `${day}.${month}.${year}`;
+        }
+
+        const myDate = new Date();
+        console.log("Дата в формате дд.мм.гг:", formatDate(myDate));
+    </script>
+</body>
+</html> -->

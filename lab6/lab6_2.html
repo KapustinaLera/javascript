@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placeholder Example</title>
+    <style>
+        .placeholder {
+            color: blue; /* Синий цвет для плейсхолдера */
+        }
+    </style>
+</head>
+<body>
+    <input type="text" data-placeholder="Введите текст здесь" />
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputs = document.querySelectorAll('[data-placeholder]');
+
+            inputs.forEach(input => {
+                const placeholderText = input.getAttribute('data-placeholder');
+                input.classList.add('placeholder');
+                input.value = placeholderText;
+
+                input.addEventListener('focus', function() {
+                    if (input.value === placeholderText) {
+                        input.value = '';
+                        input.classList.remove('placeholder');
+                    }
+                });
+
+                input.addEventListener('blur', function() {
+                    if (input.value === '') {
+                        input.value = placeholderText;
+                        input.classList.add('placeholder');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

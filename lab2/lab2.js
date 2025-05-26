@@ -46,19 +46,34 @@ function pow(x, n) {
     }
   }
   
-  /**
-   * @param {number} n 
-   * @returns {BigInt} 
-   */
-  function fib(n) {
-    let a = 0n, b = 1n;
-    for (let i = 0; i < n; i++) {
-      let temp = a;
-      a = b;
-      b = temp + b;
-    }
-    return a;
+
+/**
+ * @param {number} n
+ * @returns {BigInt}
+ */
+export function fib(n) {
+  if (n <= 1) {
+    return BigInt(n);
+  } else {
+    return fib(n - 1) + fib(n - 2);
   }
+}
+
+
+
+  // /**
+  //  * @param {number} n 
+  //  * @returns {BigInt} 
+  //  */
+  // function fib(n) {
+  //   let a = 0n, b = 1n;
+  //   for (let i = 0; i < n; i++) {
+  //     let temp = a;
+  //     a = b;
+  //     b = temp + b;
+  //   }
+  //   return a;
+  // }
   
   /**
    * @param {number} x 

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Prompt</title>
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; 
+        }
+
+        /* Стиль для формы */
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: relative; /* Для позиционирования кнопок */
+        }
+
+        .modal-content input[type="text"] {
+            display: block;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+
+        .modal-buttons {
+            text-align: right;
+        }
+
+        .modal-buttons button {
+            margin-left: 10px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        function showPrompt(html, callback) {
+            let modal = document.createElement('div');
+            modal.classList.add('modal');
+
+            let modalContent = document.createElement('div');
+            modalContent.classList.add('modal-content');
+
+            let message = document.createElement('div');
+            message.innerHTML = html;
+            modalContent.appendChild(message);
+
+            let input = document.createElement('input');
+            input.type = 'text';
+            modalContent.appendChild(input);
+
+            let buttons = document.createElement('div');
+            buttons.classList.add('modal-buttons');
+
+            let okButton = document.createElement('button');
+            okButton.textContent = 'OK';
+            buttons.appendChild(okButton);
+
+            let cancelButton = document.createElement('button');
+            cancelButton.textContent = 'ОТМЕНА';
+            buttons.appendChild(cancelButton);
+
+            modalContent.appendChild(buttons);
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+
+            // Устанавливаем фокус в input
+            input.focus();
+
+            // Обработчики событий
+
+            // OK
+            okButton.onclick = () => {
+                let value = input.value;
+                closeModal(value);
+            };
+
+            // Отмена
+            cancelButton.onclick = () => {
+                closeModal(null);
+            };
+
+            // Enter
+            input.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Предотвратить отправку формы
+                    let value = input.value;
+                    closeModal(value);
+                }
+            });
+
+            // Esc
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeModal(null);
+                }
+            });
+
+            function closeModal(value) {
+                document.body.removeChild(modal);
+                callback(value);
+            }
+
+            // Блокировка Tab/Shift+Tab за пределами формы
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Tab') {
+                    const focusableElements = modalContent.querySelectorAll('input, button');
+                    if (focusableElements.length > 0) {
+                        const firstFocusable = focusableElements[0];
+                        const lastFocusable = focusableElements[focusableElements.length - 1];
+
+                        if (event.shiftKey) {
+                            // Shift+Tab
+                            if (document.activeElement === firstFocusable) {
+                                event.preventDefault();
+                                lastFocusable.focus();
+                            }
+                        } else {
+                            // Tab
+                            if (document.activeElement === lastFocusable) {
+                                event.preventDefault();
+                                firstFocusable.focus();
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        showPrompt("Введите что-нибудь<br>... умное:)", function(value) {
+            alert(value);
+        });
+    </script>
+
+</body>
+</html>
